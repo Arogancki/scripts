@@ -1,0 +1,67 @@
+#!/bin/bash
+let i=1
+for x in $(cat zbiory); do
+let t[$i]=$x
+let i=$i+1
+done
+let i=1
+let l=${#t[*]}
+let a=${t[$i]}
+while [ $a -ne 0 ]; do
+let ta[$i]=${t[$i]}
+let i=$i+1
+let a=${t[$i]}
+done
+let j=1
+let i=$i+1
+let a=${t[$i]}
+while [ $i -le $l ]; do
+let tb[$j]=${t[$i]}
+let i=$i+1
+let j=$j+1
+done
+
+
+
+let i=1
+let maxta=${ta[$i]}
+let l=${#ta[*]}
+while [ $l -ge $i ]; do
+let a=${ta[$i]}
+if [ $a -gt $maxta ]; then maxta=${ta[$i]}
+fi
+let i=$i+1
+done
+let i=1
+let minta=${ta[$i]}
+let l=${#ta[*]}
+while [ $l -ge $i ]; do
+let a=${ta[$i]}
+if [ $a -lt $minta ]; then minta=${ta[$i]}
+fi
+let i=$i+1
+done
+echo "Najmniejsza liczba w pierwszym zbiorze" $minta
+echo "Najwieksza liczba w pierwszym zbiorze" $maxta
+
+
+let i=1
+let maxtb=${tb[$i]}
+let l=${#tb[*]}
+while [ $l -ge $i ]; do
+let a=${tb[$i]}
+if [ $a -gt $maxtb ]; then maxtb=${tb[$i]}
+fi
+let i=$i+1
+done
+let i=1
+let mintb=${tb[$i]}
+let l=${#tb[*]}
+while [ $l -ge $i ]; do
+let a=${tb[$i]}
+if [ $a -lt $mintb ]; then mintb=${tb[$i]}
+fi
+let i=$i+1
+done
+echo "Najmniejsza liczba w pierwszym zbiorze" $mintb
+echo "Najwieksza liczba w pierwszym zbiorze" $maxtb

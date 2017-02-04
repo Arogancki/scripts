@@ -1,0 +1,9 @@
+#!/bin/bash
+#komentarz
+echo
+#1.nadpisuje
+echo "1 2 5 5 " > plik1
+#1.dodaje
+echo "dom dom dom flortom" >> plik2
+let t[5]=1333
+echo ${f[5]} >> plik1

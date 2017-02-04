@@ -1,0 +1,6 @@
+#!/bin/bash
+let i=1
+for x in $(cat zbiory); do
+let t[$i]=$x
+let i=$i+1
+done

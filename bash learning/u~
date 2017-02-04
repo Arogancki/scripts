@@ -1,0 +1,3 @@
+#!/bin/bash
+a=(15 pies)
+echo ${a[0]}

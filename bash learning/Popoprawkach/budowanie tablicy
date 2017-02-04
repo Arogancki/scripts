@@ -1,0 +1,35 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+read -p "Ile liczb bedzie w zbiorze" n
+let i=1
+while [ $i -le $n ]; do
+read -p "Podaj liczbe numer $i" a
+let zb[i]=$a
+let i=$i+1
+done
+echo "Kontrolny wydruk zbioru"
+while [ $i -ne 0 ]; do
+echo ${zb[$i]}
+let i=$i-1
+done
+
+
+
+
+
+
+
+
+
+
+
+
+

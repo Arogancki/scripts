@@ -1,0 +1,30 @@
+#!/bin/bash
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+echo        
+echo
+echo      "          ! Która liczba jest największa?? !"       
+echo
+echo
+echo      "          ********************************"         
+echo
+echo "Podaj " $x $y $z
+read $x
+read $y
+read $z
+echo
+if [ $x -gt $y ]; then
+			if [ $x -gt $z ]; then echo "Największa liczba to $x"
+				else echo "Największa liczba to $z"
+			fi
+elif [ $y -gt $z ]; then echo "Największa liczba to $y"
+	else echo "Największa liczba to $z"
+fi
+
+

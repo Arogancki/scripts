@@ -1,0 +1,42 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+let k=1
+while [ $k -eq 1 ]; do
+		let y=0
+		let x=0
+		read -p "ile jest liczb? " p
+	while [ $p -ne 0 ]; do
+		read -p "Podaj liczbe " a 
+		let y=$y+$a
+		let r=$a%2
+			if [ $r -eq 1 ]; then let x=$x+$a
+			fi
+			if [ $r -eq -1 ]; then let x=x=$x+$a
+			fi
+		let p=$p-1
+	done
+echo "Suma wszystkich liczb to $y"
+echo "Suma wszystkich liczb nieparzystych to $x"
+	let e=2
+	while [ $e -eq 2 ]; do
+	echo -n "Czy chcesz zaczac od nowa ? (wpisz \"tak\" lub \"nie\")"
+	read odpowiedz
+		case "$odpowiedz" in
+		"tak") e=1;;
+		"Tak") e=1;;
+		"TAK") e=1;;
+		"nie") exit;;
+		"Nie") exit;;
+		"NIE") exit;;
+		*) echo "TAK ALBO NIE!!! "; let e=2;;
+		esac
+	done
+done

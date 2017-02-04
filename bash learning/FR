@@ -1,0 +1,40 @@
+#!/bin/bash 
+# fibon rekurencyjnie
+
+
+if [ $# -le 0 ]; 
+		then
+echo "Brak parametrow";
+		exit
+	fi
+
+if [ $1 -lt 0 ]; 
+		then
+echo "Tylko wieksze od 0!";
+		exit
+	fi
+
+
+
+let n=$1;
+
+if [ $n -lt 3 ]; 
+	then
+		if [ $n -eq 2 ]; 
+		then
+			echo 1;
+			exit;
+		fi
+	echo 0;
+	exit
+	fi
+
+let first=$n-1;
+let second=$n-2;
+
+let first=$(./FR $first);
+let second=$(./FR $second);
+
+let W=$first+$second;
+
+echo $W;

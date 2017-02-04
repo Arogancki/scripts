@@ -1,0 +1,36 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+echo        
+echo
+echo      "          !Poszukiwanie NWD dla licz a i b!"
+echo
+echo
+echo      "          ********************************"   
+echo
+#1. Dane sa 2 nie zerowe liczby naturalne a i b
+#2. Dopoki a i b nie sa sobie rowne wykonuj punkt 3 w przeciwnym razie wykonuj punkt 4
+#3. Od liczby wiekszej odejmij mniejsza i ustaw te wieksza liczbe rowna otrzymanej roznicy
+#4. Wyprowadz komunikat NWD= i wpisz albo a albo b
+echo
+echo -n "Podaj liczbe a"
+read a
+echo -n "Podaj liczbe b"
+read b
+let c=$a+$b
+if [ $c -eq 0 ]; then echo "Zadna z wprowadzonych liczb nie moze byc rowna 0!" 
+			exit
+				fi
+while [ $a -ne $b ]; do
+if [ $a -gt $b ]; then let a=$a-$b
+else let b=$b-$a
+fi
+done
+echo -n "NWD=$a"

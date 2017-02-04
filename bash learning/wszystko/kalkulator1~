@@ -1,0 +1,36 @@
+#!/bin/bash
+echo
+echo
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+echo        
+echo
+echo      "          !..!       Kalkulator       !..!"       
+echo
+echo
+echo      "          ********************************"         
+echo
+echo
+echo -n "Podaj liczbe a"
+read a
+echo -n "Podaj liczbe b"
+read b
+echo -n "Podaj kod operacji: + lub - lub / lub * s (średnia) p (a do potęgi b)"
+read x
+case "$x" in
+"s") let w=($a+$b)/2; echo "Średni wynik równa się" $w; echo ;;
+"p") let w=$a**$b; echo "Wynik potęgowania równa się" $w; echo ;;
+"+") let w=$a+$b; echo "Wynik dodawania równa się" $w; echo ;;
+"-") let w=$a-$b; echo "Wynik odejmowania równa się" $w; echo ;;
+"/") let w=$a/$b; echo "Wynik dzielenia równa się" $w; echo ;;
+"*") let w=$a*$b; echo "Wynik mnożenia równa się" $w; echo ;;
+*) echo "Podano zły kod operacji!!"; echo ;;
+esac
+
+

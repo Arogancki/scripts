@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# Wartosci
+	#parametry
+		let a=$1 #parametr 1
+		let a=$2 #parametr 2
+		
+		$@ - wszystkie parametry
+		$# - ilosc parametrow
+	
+		#1. Parametrow ze staru nie moze byc >9, wiec
+		#2. Wrzuca wszystkie wpisane parametry do tab 
+		tab=($@)
+
+	# nadawanie wartosci
+		let a=0; # jako liczba
+		a=0;     # jako tekst
+	
+	#czytanie wartosci
+	read a; # wczytanie wartosci a
+	read a z b; # pare wartosci
+
+	#tablica
+	a=(15 pies)
+	echo ${tab[*]} # drukowanie wszystkich
+	let n=${#tab[@]}; # ilosc elementow
+
+
+#DRUKOWANIE
+	echo "napis" #napis
+	echo "zmnienna a = " $a; #zmienna
+	echo "zmienna">plik   # zapisuje jako plik (zastepuje)
+	echo "zmienna">>plik2 # zapisuje jako plik (dopisuje )
+	echo ${t[*]} # wszystko w tablicy
+
+
+#Petle
+	#while 
+	# -eq ; -ne ; -gt ; -ge ; -lt ; -le ;
+	while [ $i -eq 10 ]; 
+	do
+	# zadania
+	done
+
+	#for
+	for x in 1 2 ... n; # for x in $(cat plik;
+	do
+	#komnedy
+	done
+
+
+# warunki
+
+	#if
+	if [ $a -gt 0 ]; 
+		then
+		echo "wieksze niz 0";
+	else
+		echo "mniejsze niz 0";
+	fi
+	
+	#case - switch
+	case "$a" in
+		"tak") e=1;;
+		"1") exit;;
+		*) echo "defalut";;
+	esac
+
+# FUNKCJE 
+funkcja ()
+{
+t=($@)
+let n=${#t[@]};
+}
+
+#Zwracanie 
+
+echo "teskt";
+echo $zmienna;
+
+rekurencja - let wynik=$(./nazwa_programu $parametr_wejsciowy);
+
+wywolanie funkcji tekst=$( head -3 "./${tab[$i]}" | wc -w );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

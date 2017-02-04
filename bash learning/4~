@@ -1,0 +1,82 @@
+#!/bin/bash
+#1. Tworzymy na poczatku tablice ze wszytkimi wartosciami pliku zbiory
+#2. Zmienna i oznacza numer zmiennej znajdujacej sie w tablicy "t"
+let i=1
+for x in $(cat zbiory); do
+#3. Tablica t bedzie zawierac wszystkie wartosci z pliku "zbiory"
+let t[$i]=$x
+let i=$i+1
+done
+#4. Ponownie zmienna i oznacza numer zmiennej znajdujacej sie w tablicy "t"
+let i=1
+#5. Zmienna l oznacza ilosc wszystkich wartosci w tablicy "t"
+let l=${#t[*]}
+#6. Zmienna a oznacza wartosc w danej komorce tablicy "t"
+let a=${t[$i]}
+while [ $a -ne 0 ]; do
+#7. Tablica "ta" oznacza zbior liczb 1 tzn do 0
+let ta[$i]=${t[$i]}
+let i=$i+1
+let a=${t[$i]}
+done
+#8. Zmienna j oznacza komorke w zbiorze tb
+let j=1
+let i=$i+1
+let a=${t[$i]}
+while [ $i -le $l ]; do
+#9. Tablica "tb" oznacza zbior liczb 2 tzn po 0
+let tb[$j]=${t[$i]}
+let i=$i+1
+let j=$j+1
+done
+#10. Wyszukujemy najmniejszej i najwiekszej wartosci tablicy "ta"
+#11. Zmienna i oznacza numer zmiennej znajdujacej sie w tablicy "ta"
+let i=1
+#12. Zmienna maxta oznacza maxymalna wartosc tablicy "ta"
+let maxta=${ta[$i]}
+#13. Zmienna l oznacza ilosc wartosci w zmiennej "ta"
+let l=${#ta[*]}
+while [ $l -ge $i ]; do
+let a=${ta[$i]}
+if [ $a -gt $maxta ]; then maxta=${ta[$i]}
+fi
+let i=$i+1
+done
+let i=1
+let minta=${ta[$i]}
+let l=${#ta[*]}
+while [ $l -ge $i ]; do
+let a=${ta[$i]}
+if [ $a -lt $minta ]; then minta=${ta[$i]}
+fi
+let i=$i+1
+done
+echo "Najmniejsza liczba w pierwszym zbiorze" $minta
+echo
+echo "Najwieksza liczba w pierwszym zbiorze" $maxta
+echo
+#10. Wyszukujemy najmniejszej i najwiekszej wartosci tablicy "tb"
+#11. Zmienna i oznacza numer zmiennej znajdujacej sie w tablicy "tb"
+let i=1
+#12. maxta oznacza maxymalna wartosc tablicy "tb"
+let maxtb=${tb[$i]}
+#13. Zmienna l oznacza ilosc wartosci w zmiennej "tb"
+let l=${#tb[*]}
+while [ $l -ge $i ]; do
+let a=${tb[$i]}
+if [ $a -gt $maxtb ]; then maxtb=${tb[$i]}
+fi
+let i=$i+1
+done
+let i=1
+let mintb=${tb[$i]}
+let l=${#tb[*]}
+while [ $l -ge $i ]; do
+let a=${tb[$i]}
+if [ $a -lt $mintb ]; then mintb=${tb[$i]}
+fi
+let i=$i+1
+done
+echo "Najmniejsza liczba w pierwszym zbiorze" $mintb
+echo
+echo "Najwieksza liczba w pierwszym zbiorze" $maxtb

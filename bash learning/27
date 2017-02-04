@@ -1,0 +1,10 @@
+#!/bin/bash
+let i=1
+for x in $(cat zbiory); do
+let t[$i]=$x
+let i=$i+1
+done
+let i=1
+let l=${#t[*]}
+let a=${t[$i]}
+let j=1

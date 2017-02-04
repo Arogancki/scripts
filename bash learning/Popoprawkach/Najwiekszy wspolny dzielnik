@@ -1,0 +1,23 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+read -p "Podaj liczbe a" a
+read -p "Podaj liczbe b" b
+let c=$a+$b
+if [ $c -eq 0 ]; then echo "Zadna wprowadzona nie moze sie rownac 0!"
+	exit
+		fi
+while [ $a -ne $b ]; do
+	if [ $a -gt $b ]; then
+				let a=$a-$b
+					else let b=$b-$a
+						fi
+							done
+echo "NWD=$a"

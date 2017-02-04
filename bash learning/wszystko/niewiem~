@@ -1,0 +1,12 @@
+#!/bin/bash
+#komentarz
+let i=1
+#1.wprowadz do zmiennej x kolejny element pliku test (az wszystkie dodasz)
+for x in $(cat test); do
+let t[$i]=$x
+tt[$i]=$x
+let i=$i+1
+done
+#2. Drukuj wszystkie elementy tablicy
+echo ${t[*]}
+echo ${tt[*]}

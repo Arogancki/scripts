@@ -1,0 +1,20 @@
+#!/bin/bash
+#komentarz
+#1.Startowanie z parametrem
+#2 wpisujemy w terminalu "bash "plik" 1 2 3" - dla 3 parametrow 1 2 3 
+#3.$1 - wartosc pierwszego parametru
+#4.$2 wartosc drugiego parametru
+#5.$@ wszystkie parametry
+#6.$# liczba parametrow
+echo "Twoje parametry to"
+echo "1-"$1
+echo "2-"$2
+echo "3-"$3
+echo "4-"$4
+echo "5-"$5
+echo "6-"$6
+echo "7-"$7
+echo "8-"$8
+echo "9-"$9
+echo "wszyskie parametry" $@
+echo "ilosc podanych parametrow" $#

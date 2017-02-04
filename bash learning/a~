@@ -1,0 +1,14 @@
+#!/bin/bash
+# FUNKCJE 
+makei ()
+{
+t=($@)
+let n=${#t[@]};
+while [ $n -gt 0 ];
+do
+echo ${t[$n-1]};
+let n=n-1;
+done
+}
+
+makei ;

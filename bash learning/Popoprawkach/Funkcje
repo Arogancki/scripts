@@ -1,0 +1,38 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"  
+#1.Skroty obliczen-funkcje
+function sum
+{
+let s=$1+$2
+echo "suma=" $s
+}
+function ilo
+{
+let i=$1*$2
+echo "iloczyn= " $i
+}
+while [ 5 -gt 2 ]; do
+read -p "Podaj a i b" a b
+sum $a $b
+ilo $a $b
+sum 10 $b
+ilo 5 $a
+done
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo -n "Podaj kod"
+read x
+
+case "$x" in
+"s") echo "podano s" $x; echo ;;
+*) echo "defalut"; echo;;
+esac
+
+

@@ -1,0 +1,71 @@
+#!/bin/bash
+let g=1
+while [ $g -eq 1 ]; do
+echo -n "Segregacja z pliku \"test\" od najwiekszej lub od najmniejszej ( Wpisz > lub < )"
+read x
+case "$x" in
+">")
+let i=1
+for x in $(cat test); do
+let t[$i]=$x
+tt[$i]=$x
+let i=$i+1
+done
+let i=1
+let j=2
+let k=1
+let l=1
+let n=${#t[*]}
+while [ $k -ne 0 ]; do
+let k=0
+let i=1
+let j=2
+while [ $j -le $n ]; do
+let z=${t[$i]}
+let s=${t[$j]}
+if [ $z -gt $s ]; then let t[$i]=$s; let t[$j]=$z; let k=1
+fi
+let i=$i+1
+let j=$j+1
+let l=$l+1
+done
+done
+echo "Upozadkowane liczby x>y" echo ${t[*]}
+echo "Liczba kolek" $l
+let g=0
+;;
+"<")
+let i=1
+for x in $(cat test); do
+let t[$i]=$x
+tt[$i]=$x
+let i=$i+1
+done
+let i=1
+let j=2
+let k=1
+let l=1
+let n=${#t[*]}
+while [ $k -ne 0 ]; do
+let k=0
+let i=1
+let j=2
+while [ $j -le $n ]; do
+let z=${t[$i]}
+let s=${t[$j]}
+if [ $z -lt $s ]; then let t[$i]=$s; let t[$j]=$z; let k=1
+fi
+let i=$i+1
+let j=$j+1
+let l=$l+1
+done
+done
+echo "Upozadkowane liczby x<y" echo ${t[*]}
+echo "Liczba kolek" $l
+let g=0
+;;
+*) echo "Wpisz \"<\" lub \">\" !!"
+let g=1
+;;
+esac 
+done

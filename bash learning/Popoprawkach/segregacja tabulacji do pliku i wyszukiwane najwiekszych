@@ -1,0 +1,45 @@
+#!/bin/bash
+#1. Skrypt pobierajaca z pliku liczby liczby i dodaje je posegregowane do przystych inie parszystych i tworzy (zastepuje) plik z nimi
+let i=1
+for x in $(cat liczby); do
+let r=$x%2
+if [ $r -eq 1 ]; then let tn[$i]=$x
+else let tp[$i]=$x
+fi
+let i=$i+1
+done
+echo ${tn[*]} > liczbyn
+echo ${tp[*]} > liczbyp
+let i=1
+for x in $(cat liczbyp); do
+let tp[$i]=$x
+let i=$i+1
+done
+let i=1
+let maxp=${tp[$i]}
+#2. Ilosc elementow tablicy
+let np=${#tp[*]}
+while [ $np -gt $i ]; do
+let a=${tp[$i]}
+if [ $a -gt $maxp ]; then maxp=${tp[$i]}
+fi
+let i=$i+1
+done
+echo $maxp
+let i=1
+for x in $(cat liczbyn); do
+let tn[$i]=$x
+let i=$i+1
+done
+let i=1
+let maxn=${tn[$i]}
+#2. Ilosc elementow tablicy
+let nn=${#tn[*]}
+let a=${tn[$i]}
+while [ $nn -gt $i ]; do
+let a=${tn[$i]}
+if [ $a -gt $maxn ]; then maxn=${tn[$i]}
+fi
+let i=$i+1
+done
+echo $maxn

@@ -1,0 +1,29 @@
+#!/bin/bash
+#komentarz
+echo
+echo
+echo
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+echo        
+echo
+echo      "          !..!       Tabulator        !..!"       
+echo
+echo
+echo      "          ********************************"         
+echo
+echo
+echo
+read -p "Podaj liczbe a" a
+read -p "Podaj liczbe b" b
+let a=$a*1000
+let c=$a/$b
+let d=$c/1000
+let 
+echo "Wynik dzielenia to $d,$r"

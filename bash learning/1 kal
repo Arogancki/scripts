@@ -1,0 +1,10 @@
+#!/bin/bash 
+
+read a z b;
+
+case "$z" in
+	"+") let w=$a+$b; echo $w; exit;;
+	"-") let w=$a-$b; echo $w; exit;;
+	"*") let w=$a*$b; echo $w; exit;;
+	*) echo "Bledna operacja";;
+esac

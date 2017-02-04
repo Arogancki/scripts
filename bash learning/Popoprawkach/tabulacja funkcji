@@ -1,0 +1,19 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+read -p "Podaj poczatek zakresu" a
+read -p "Podaj koniec zakresu" b
+read -p "Podaj przyrost" k
+let x=$a
+while [ $x -lt $b ]; do
+let y=$x^2+10*$x+13
+echo "x=$x y=$y"
+let x=$x+$k
+done

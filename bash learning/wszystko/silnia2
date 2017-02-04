@@ -1,0 +1,30 @@
+#!/bin/bash
+#komentarz
+echo
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+echo        
+echo
+echo      "          !..!          Silnia        !..!"       
+echo
+echo
+echo      "          ********************************"         
+echo
+while [ 10 -gt 6 ]; do
+echo
+read -p "Podaj liczbe n" n
+let sil=1
+let p=0
+while [ $p -ne $n ]; do
+			let p=$p+1
+				let sil=$sil*$p
+done
+echo "n!=$sil"
+echo
+done

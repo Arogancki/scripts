@@ -1,0 +1,16 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"  
+#1.nadpisuje 1 2 5 5 jako pliku
+echo "1 2 5 5 " > plik1
+#1.dodaje dom dom dom flortom do pliku d
+echo "dom dom dom flortom" >> plik2
+let t[5]=1333
+echo ${f[5]} >> plik1

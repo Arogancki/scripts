@@ -1,0 +1,46 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+echo
+read -p "Podaj liczbe binarna " bin
+echo
+let i=1
+if [ $bin -eq 0 ]; then echo "0"; echo; exit
+fi
+while [ $bin -gt 0 ]; do
+let r=$bin%10000
+let t[$i]=$r
+let bin=$bin/10000
+let i=$i+1
+done
+let i=$i-1
+while [ $i -gt 0 ]; do
+case "${t[$i]}" in
+"1111") echo -n "F" ;;
+"1110") echo -n "E" ;;
+"1101") echo -n "D" ;;
+"1100") echo -n "C" ;;
+"1011") echo -n "B" ;;
+"1010") echo -n "A" ;;
+"1001") echo -n "9" ;;
+"1000") echo -n "8" ;;
+"111") echo -n "7" ;;
+"110") echo -n "6" ;;
+"101") echo -n "5" ;;
+"100") echo -n "4" ;;
+"11") echo -n "3" ;;
+"10") echo -n "2" ;;
+"1") echo -n "1" ;;
+*) echo "Podana liczba nie jest liczba binarna"; exit ;;
+esac
+let i=$i-1
+done
+echo 
+echo

@@ -1,0 +1,18 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+#1. Obliczanie dzielenie do 3 miejsc po przecinku a/b=d,rrr
+read -p "Podaj liczbe a" a
+read -p "Podaj liczbe b" b
+let a=$a*1000
+let c=$a/$b
+let d=$c/1000
+let r=$c%1000
+echo "Wynik dzielenia to $d,$r"

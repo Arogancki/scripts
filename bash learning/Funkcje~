@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# FUNKCJE 
+function makei
+{
+let i=0;
+}
+
+while [ 5 -gt 2 ]; do
+read -p "witam " 
+i=5;
+makei
+echo i;
+done
+
+
+
+
+
+
+
+
+
+

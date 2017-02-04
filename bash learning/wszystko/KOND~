@@ -1,0 +1,39 @@
+#!/bin/bash
+#komentarz
+echo
+echo
+echo
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+echo        
+echo
+echo      "          !..!       Tabulator        !..!"       
+echo
+echo
+echo      "          ********************************"         
+echo
+echo
+echo
+read -p "Podaj liczbe oktalna" a
+let p=1
+let d=0
+while [ $a -ne 0 ]; do
+let r=$a%10
+if [ $r -gt 7 ]; then echo "Podana liczba nie jest liczba oktalna!!" 
+exit
+fi
+	let d=$d+$r*$p
+	let a=$a/10
+	let p=$p*8
+done
+	echo "Liczba dziesietna to $d"
+
+
+
+

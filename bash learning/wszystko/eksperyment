@@ -1,0 +1,7 @@
+#!/bin/bash
+#komentarz
+#1. Parametrow ze staru nie moze byc >9
+#2. Wrzuca wszystkie wpisane parametry do tab 
+tab=($@)
+echo ${tab[*]}
+

@@ -1,0 +1,44 @@
+#!/bin/bash
+#komentarz
+#1. Tworze tablice z liczb w pliku
+let i=1
+for x in $(cat test); do
+let t[$i]=$x
+let i=$i+1
+done
+#2. ilosc liczb tablicy
+let n=${#t[*]}
+#3. liczba kolek
+let l=0
+#4. Pierwszy start
+let f=1
+	while [ $f -ge 1 ]; do
+	let f1=0
+	let i=1
+	let j=2
+#5. sprawdz wartosci parzyste
+		while [ $j -le $n ]; do
+			if [ ${t[$i]} -gt ${t[$j]} ]; then let a=${t[$i]}; let t[$i]=${t[$j]}; let t[$j]=$a; let f1=1
+			fi
+		let i=$i+2
+		let j=$j+2
+		let l=$l+1
+		done
+	let f2=0
+	let i=2
+	let j=3
+#.6 sprawdz wartosci nieparzyste
+		while [ $j -le $n ]; do
+			if [ ${t[$i]} -gt ${t[$j]} ]; then let a=${t[$i]}; let t[$i]=${t[$j]}; let t[$j]=$a; let f2=1
+			fi
+		let i=$i+2
+		let j=$j+2
+		let l=$l+1
+		done
+	let f=$f1+$f2
+	done
+echo
+echo "Twoje posegregowane liczby" 
+echo ${t[*]}
+echo
+echo "Naliczylem $l kolek"

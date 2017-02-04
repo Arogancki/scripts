@@ -1,0 +1,23 @@
+#!/bin/bash
+let i=0
+for x in $(cat $1); do
+let t[$i]=$x
+let i=$i+1
+done
+let lt=${#t[*]}
+let r=$lt%2
+if [ $r -eq 1 ]; then echo "ilosc licz w pliku zrudlowym musi byc parzysta, skrypt zostaje wyłączony!!"
+exit
+fi
+let i=0
+let j=1
+while [ $i -lt $lt ]; do
+let a=${t[$i]}
+let b=${t[$j]}
+let s=$a+$b
+let g=$a*$b
+let i=$i+2
+let j=$j+2
+echo $s >> $2
+echo $g >> $3
+done

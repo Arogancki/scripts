@@ -1,0 +1,28 @@
+#!/bin/bash 
+# fibon ite
+
+if [ $# -le 0 ]; 
+		then
+echo "Brak parametrow";
+		exit
+	fi
+
+if [ $1 -lt 0 ]; 
+		then
+echo "Tylko wieksze od 0!";
+		exit
+	fi
+
+let this=0;
+let next=1;
+let n=$1;
+
+while [ $n -ge 1 ]; 
+do
+	let nextnext=$this+$next;
+	let this=$next;
+	let next=$nextnext;
+	let n=$n-1;
+done
+
+echo $this;

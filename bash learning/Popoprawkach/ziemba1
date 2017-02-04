@@ -1,0 +1,24 @@
+#!/bin/bash
+#komentarz
+echo
+echo      "          ********************************"         
+echo
+echo
+echo      "          !..!    Artur !! Ziemba     !..!"       
+echo
+echo
+echo      "          ********************************"     
+let p=0
+let y=0
+let x=0
+while [ $p -eq 0 ]; do
+read -p "Podaj liczbe " a 
+let y=$y+$a
+let r=$a%2
+if [ $r -eq 1 ]; then let x=$x+$a
+fi
+read -p "Czy chcesz podac wiecej liczb? (Wpisz 0  jesli tak lub wpisz 1 jesli nie)" p
+done
+echo "Suma wszystkich liczb to $y"
+echo "Suma wszystkich liczb nieparzystych to $x"
+

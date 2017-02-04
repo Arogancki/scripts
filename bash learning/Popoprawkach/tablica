@@ -1,0 +1,13 @@
+#!/bin/bash
+a=(15 223 13 44 321)
+b=(plik plik2 pies kot)
+echo ${a[2]} ${b[3]}
+echo ${a[2]}
+let i=2
+echo ${b[$i]}
+echo
+echo
+echo
+let tab[5]=32
+let tab[$i]=$b
+echo ${tab[$i]}
