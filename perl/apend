@@ -1,0 +1,64 @@
+#!/usr/bin/perl
+
+$changeTotal=0;
+if (scalar(@ARGV)>1) # if more then 1 arguments starts from /path
+{
+	@regexs= @ARGV[ 1 ... $#ARGV ];
+	process_files("."); # starts looking for files from working directory
+	print "There was $changeTotal changes.\n";
+}
+else # if less then 2 arguments die
+{	
+	die "missing argument\n";
+}
+
+#function rename file in dirs
+sub process_files 			
+{
+	my $path = @_[0]; #get first argument
+	opendir my $dir_h, $path # open argument dir or die
+    		or return "Cannot open directory: $path";
+	my @allFiles = readdir($dir_h); #get all files in dir
+	closedir $dir_h;# close dir
+	@allFiles = sort(@allFiles[2...scalar(@allFiles)-1]);# skip first 2 files ("." and "..") and sort
+	my @temp=@allFiles; # store allFiles becouse of recurise
+	foreach (@allFiles) # for all files
+	{
+		if (-d $path."/".$_) # check if file is dir
+		{
+			process_files($path."/".$_); # if dir start recursive process
+		}
+	}
+	@allFiles=@temp; # take all files back
+	for ($i=0; $i<scalar(@allFiles); $i++) #index needed to override renamed file
+	{
+		unless (grep{ /$ARGV[0]/ } $allFiles[$i]) # skip pattern not matching files
+		{
+			next;
+		}
+		unless (-r $path."/".$allFiles[$i] and -w $path."/".$allFiles[$i] and $path."/".$allFiles[$i]) #if unreadable unwritable or non text file go next
+		{
+			next;
+		}		
+		open ($fileIN, '<', $path."/".$allFiles[$i]) or print "Can't open $path/$file: $!\n"; #open file for read
+		@lines=<$fileIN>; #get all lines
+		@before = @lines; # save lines before changes to print them
+		close ($fileIN);#CLOSE 	file for read
+		for ($j=0; $j<scalar(@regexs); $j++) # for all regex
+		{
+			open ($fileOUT, '>', $path."/".$allFiles[$i]) or print "Can't open $path/$file: $!\n"; #open file for write
+			foreach ( @lines ) # for all lines
+			{
+				$temp=$_;
+				$_=~eval($regexs[$j]); # perform regex on line
+				unless($temp eq $_)
+				{
+					$changeTotal++; # if success add as performed
+				}
+				print $fileOUT "$_"; # print to file
+			}	
+			close ($fileOUT); # close file for write
+		}
+	}
+}
+#end of function

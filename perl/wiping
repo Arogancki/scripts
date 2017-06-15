@@ -1,0 +1,49 @@
+#!/usr/bin/perl
+
+use open ':std', ':encoding(UTF-8)'; # set char encoding to utf8 like in htmls
+
+$filename = <STDIN>; # get file name of html from stdin 
+chomp($filename);
+# test $filename="1.html";
+# test $filename="2.html";
+
+foreach (@ARGV){
+	open $file, '<', $_; # open argv file
+	@looking = (@looking , <$file>); # get all names from file
+	close $file; # close file
+}
+
+# test @looking=(zuza98, condzi);
+
+open($html, "<:encoding(UTF-8)", $filename) || die "Can't open HTML filze: $filename: $!";
+$file = do { local $/; <$html> }; # get all lines from file
+close($filename);
+
+($table) = $file =~ /Bie..cy ranking.*?<table(.*?)<\/table/s; # get table from file
+if (!defined($table)) {die "Coudn't find table with scores in HTML file";} #if couldt find die
+@rows= $table =~ /<tr class="problemrow">(.*?)<\/tr>/sg; #get rows from table
+
+for (@rows)
+{
+	($nick)= $_ =~ /\/WIPING[0-9]*\/users\/([^"]*)/; # get nick from row
+	if (@looking and !grep /$nick/,@looking) {next;} # skip if is't on scoope list
+	($name)= $_ =~ /\/WIPING[0-9]*\/users\/[^>]*.([^<]*)/; # get name from row
+	@scor= $_ =~ />(-|[0-9]+\.?[0-9]*)/g; #get all rest number elements or "-"
+	for (@scor) { 
+		s/\./,/g; # replace dots into commas
+		s/\-/0,0/g; # replace dashs into 0,0
+	}
+	$sums= $scor[$#scor];#get sum of scores, (task for 4.0 but no need to be printed for 5.0)
+	@scor=@scor[1...$#scor-2];#leave only scores (omit ordinal number, sol(?) and sum of scores)
+
+	$out="\"$name\",\"$nick\"";
+	for (@scor){
+		$out .= ","."$_";
+	}
+	$out .= ";\n";
+	print $out;
+}
+
+#output: on stdout .csv contains
+#"name","NICK","PUNKTY"...,
+#"name","NICK","PUNKTY"... ...

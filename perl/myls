@@ -1,0 +1,65 @@
+#!/usr/bin/perl
+
+foreach (@ARGV)
+{
+	if ($_=~/^-l$/) #option -l 
+	{
+		$flagl=1; #option flag
+		%permissions=
+		(0=>"---", 1=>"--x", 2=>"-w-", 3=>"-wx",
+		4=>"r--", 5=>"r-x", 6=>"rw-", 7=>"rwx"); #hash variable is only needed in -l option
+		next; #go to search next option
+	}
+	if ($_=~/^-L$/) #option -L
+	{
+		$flagL=1; #option flag
+		next; #go to search next option
+	}
+	if (!defined($path))
+	{
+		$path=$_; #first no option parameter is set to path 
+	}
+	else
+	{
+		print "Unsupported option \"$_\"\n"; #when path is defined all other no option parameters is treated like unsupported
+	}
+}
+$path="." if (!defined($path)); #case when the path had't been given
+opendir($dir, $path) || die "Can't open \"$path\": $!"; #try to open dir, if fail close the script
+foreach (sort(readdir($dir))) #for each file in sorted order
+	{
+ 		next if ($_ =~ m/^\./); #skip files like "." and ".."
+		printf "%.30s",$_; #print max 30 char-long name
+		if (defined($flagl)) # if -l option is on
+		{
+			@file=stat("$path/$_"); #get info about file
+			printf "\t%.10s",$file[7]; #print max 10 char-long name size in bytes
+			@ttime=localtime($file[9]); #get time of last modification 
+			$yyyy=1900+$ttime[5]; #get year moved by 1900 (defalut linux year starts from 1900)
+			$mm=$ttime[4]+1;  #get month moved by 1 (defalut linux month starts from 0)
+			$mm=$mm>9 ? $mm : "0$mm"; # if month is single digit add 0 at the beginning
+			$dd=$ttime[3]>9 ? $ttime[3] : "0$ttime[3]"; # get day and if is single digit add 0 at the beginning
+			$hh=$ttime[2]>9 ? $ttime[2] : "0$ttime[2]"; # get hour and if is single digit add 0 at the beginning
+			$mi=$ttime[1]>9 ? $ttime[1] : "0$ttime[1]"; # get minutes and if is single digit add 0 at the beginning
+			$se=$ttime[0]>9 ? $ttime[0] : "0$ttime[0]"; # get seconds and if is single digit add 0 at the beginning
+			print "\t$yyyy-$mm-$dd $hh:$mi:$se"; #print last modification time
+			if ((sprintf "%o", $file[2])=~/^4/) # get permissions to the file and check is it dir or file
+			{
+				print "\td"; # if first digit is 4 it is dir
+			}
+			else
+			{
+				print "\t-"; #if first digit is 1 it is file
+			}
+			for ($i=0;$i<3;$i++) #for all last 3 digit in permission 
+			{
+				print $permissions{substr ((sprintf "%o", $file[2]), -3+$i, 1)}; #print easy to write unix permission
+			}
+		}
+		if (defined($flagL)) # if -L option is on
+		{
+			print "\t" . getpwuid((stat("$path/$_"))[4]); # print owner of the file
+		}
+		print "\n"; # print newline after each file
+	}
+closedir $dir; #close the dir by the handler

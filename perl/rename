@@ -1,0 +1,67 @@
+#!/usr/bin/perl
+
+
+
+if (scalar(@ARGV)>1) # if more then 1 arguments
+{
+	process_files("."); # starts looking for files from working directory
+}
+else # if less then 2 arguments die
+{	
+	die "missing argument\n";
+}
+
+#function rename file in dirs
+sub process_files 			
+{
+	my $path = @_[0]; #get first argument
+	opendir my $dir_h, $path # open argument dir or die
+    		or return "Cannot open directory: $path";
+	my @allFiles = readdir($dir_h); #get all files in dir
+	closedir $dir_h;# close dir
+	@allFiles = sort(@allFiles[2...scalar(@allFiles)-1]);# skip first 2 files ("." and "..") and sort
+	my @temp=@allFiles; # store allFiles becouse of recurise
+	#print "@allFiles \n";
+	foreach (@allFiles) # for all files
+	{
+		if (-d $path."/".$_) # check if file is dir
+		{
+			process_files($path."/".$_); # if dir start recursive process
+		}
+	}
+	@allFiles=@temp; # take all files back
+	for ($i=0; $i<scalar(@allFiles); $i++) #index needed to override renamed file
+	{
+		unless (grep{ /@ARGV[0]/ } $allFiles[$i]) # skip pattern not matching files
+		{
+			next;
+		}
+		$_=$allFiles[$i]; # get file to $_ var
+		$oldfile=$_; # save old file name
+		unless ($newfile=eval($ARGV[1])) # try to make new name
+		{
+			next; # skip if doesn't match
+		}
+		$newfile=$_; #save new name
+		if ($newfile ne $oldfile) # if names are different
+		{
+			if ( grep( /^$newfile$/g, @allFiles ) )  #check if new file doesn't exist
+			{
+		  		print "Cannot change \"$path/$oldfile\"\t->\t\"$path/$newfile\". File already exist!\n"; 
+			}
+			else # if is unique
+			{
+				if (rename($path."/".$oldfile, $path."/".$newfile)) #do rename
+				{
+					print "$path/$oldfile\t->\t$path/$newfile\n";  # comment to hide renamed files
+					$allFiles[$i]=$newfile; # save in allfile array to update name
+				}
+				else
+				{
+					print "Unknown error during $path/$oldfile\t->\t$path/$newfile\n"; 
+				}
+			}
+		}
+	}
+}
+#end of function
